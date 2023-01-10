@@ -17,7 +17,5 @@ start_keyboard.add(Text('Удалить группы'), KeyboardButtonColor.PRIM
 start_keyboard.row()
 start_keyboard.add(Text('Добавить людей'), KeyboardButtonColor.PRIMARY)
 start_keyboard.add(Text('Удалить людей'), KeyboardButtonColor.PRIMARY)
-start_keyboard.row()
-start_keyboard.add(Text('Перезагрузить бота'), KeyboardButtonColor.PRIMARY)
 
 start_keyboard.get_json()

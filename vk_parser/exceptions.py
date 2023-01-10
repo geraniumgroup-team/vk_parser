@@ -38,7 +38,7 @@ def exception_handler(err, except_location: str, peer_id: int, vk, post_id = Non
         log_parser.error(f'{err} on group:{owner} on post {post_id}')
 
         if isinstance(err, requests.exceptions.ConnectionError):
-            time.sleep(600)  # 10 минут сна хватает после кика от vk.com
+            time.sleep(900)  # 15 минут сна хватает после кика от vk.com
 
             vk = reauth(peer_id=peer_id)
             return vk

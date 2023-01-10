@@ -2,7 +2,7 @@ import random
 import threading
 from vkbottle.bot import Blueprint
 from vkbottle import Keyboard, KeyboardButtonColor, Text
-from vkbottle import BaseStateGroup, GroupEventType, GroupTypes, StatePeer
+from vkbottle import StatePeer
 from vkbottle.bot import Message
 from vkbottle.dispatch.rules import ABCRule
 from models import *
@@ -269,7 +269,6 @@ async def wait_for_start(message: Message):
 @bp.on.message(state=BACKGROUND_COMMENTS.DEEP_WAITING)
 async def comments_loading(message: Message):
     if message.text == 'Завершить':
-        print(1111111111111111111)
         stop_parsing_thread()
         thread.join()
         await message.answer('Сканирование отменено')

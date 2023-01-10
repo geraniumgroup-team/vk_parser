@@ -14,9 +14,10 @@ Parser_DB = Parser_DB()
 #Класс не использует VKscript, чтобы грамотно использовать лимит запросов, предоставляемый сервером vk.com
 class Daemon_Comments_finder():
     def __init__(self):
-        self.sleep = 0.0001
+        self.sleep = 7
         self.amount_posts = 0
-        self.vk = vk
+        self.vk = vk #vk может переопределиться в процессе обработки ошибки, произойдёт
+        #переавторизация на другой логин/пароль
 
     def post_finder(self, targets_ids: list, limit: int, peer_id: int):
         general_cont = 0
