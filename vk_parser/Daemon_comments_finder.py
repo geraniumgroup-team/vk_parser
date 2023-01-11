@@ -26,7 +26,7 @@ class Daemon_Comments_finder():
 
             general_cont += 1
             stop_parsing = show_parsing_state()
-            print(stop_parsing)
+
             if stop_parsing:
                  return
 

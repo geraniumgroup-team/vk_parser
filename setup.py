@@ -7,5 +7,5 @@ setup(
    author='Doomcaster',
    author_email='webtalestoday@gmail.com',
    #packages=['vk_parser'],  #same as name
-   install_requires=['psycopg2-binary', 'vkbottle', 'vk_api'], #external packages as dependencies
+   install_requires=['vkbottle', 'vk_api', 'pytz'], #external packages as dependencies
 )

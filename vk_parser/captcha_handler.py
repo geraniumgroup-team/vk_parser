@@ -8,8 +8,6 @@ import random
 def captcha_handler(captcha, peer_id: int):
     captcha_url = captcha.get_url()
 
-    print(captcha_url)
-
     # Сохраняем изображение капчи
     image_content = io.BytesIO(requests.get(captcha_url).content)
     image_content.seek(0)
@@ -17,11 +15,9 @@ def captcha_handler(captcha, peer_id: int):
 
     # Получаем адрес капчи
     url = vk_session_group.method('photos.getMessagesUploadServer')['upload_url']
-    print(url)
 
     # Загружаем изображение на сервер ВКонтакте
     request = requests.post(url, files={'photo': image_content}).json()
-    print('2.Фото загружено в вк')
 
 
     photo = vk_session_group.method('photos.saveMessagesPhoto',
@@ -29,7 +25,7 @@ def captcha_handler(captcha, peer_id: int):
 
     attachment = 'photo{}_{}'.format(photo[0]['owner_id'], photo[0]['id'])
 
-    print('3.Фото сохранено в вк')
+
     time.sleep(1)
 
     # Отправляем сообщение
@@ -37,7 +33,6 @@ def captcha_handler(captcha, peer_id: int):
                                                                               'чтобы он заработал',
                                               'attachment': attachment, 'random_id': random.randint(0, 10000)})
 
-    print('4.Сообщение отправлено в вк')
     # Ждем ответа
     key = ''
     while (key == ''):
@@ -47,10 +42,7 @@ def captcha_handler(captcha, peer_id: int):
         time.sleep(5)
         if 'attachments' not in messages['message'].keys():
             key = messages['message']['body']
-            print(key)
-
 
     # Отправляем ключ (текст) капчи
-    print(captcha.try_again(key))
     return captcha.try_again(key)
 

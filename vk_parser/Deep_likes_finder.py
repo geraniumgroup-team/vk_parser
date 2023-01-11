@@ -1,4 +1,4 @@
-from vk_parser import vk_session_group, vk, exception_handler, show_parsing_state, vk_session_group, log_parser
+from vk_parser import vk, exception_handler, show_parsing_state, vk_session_group, log_parser
 from .vkscript import execute
 import re
 import random
@@ -16,7 +16,6 @@ class Deep_likes():
         for group_id in group_ids:
             stop_parsing = show_parsing_state()
             if stop_parsing:
-                print('stopped')
                 break
 
             try:

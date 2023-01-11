@@ -156,7 +156,6 @@ async def likes_loading(message: Message):
     serched_id = Admin_panel_db.fetch_values(script_part='DEEP_LIKES:0')
     Admin_panel_db.clear_buffer()
 
-    print(serched_id)
     if group_ids:
         thread = threading.Thread(target=Deep_likes().send_result,
                                           args=([f'-{i}' for i in group_ids], message.peer_id,

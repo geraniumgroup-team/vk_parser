@@ -3,6 +3,7 @@ from .exceptions import exception_handler
 stop_parsing = False
 
 vk = auth()
+vk_session_group = vk_session_group
 
 def show_parsing_state():
     global stop_parsing

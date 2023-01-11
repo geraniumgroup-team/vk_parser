@@ -113,7 +113,6 @@ class Comments_finder():
                                                              peer_id=peer_id):
             stop_parsing = show_parsing_state()
             if stop_parsing:
-                print('stopped')
                 break
 
             try:

@@ -121,7 +121,6 @@ async def is_button_clicked(message: Message):
             await message.answer(f"Нельзя выбрать одного человека несколько раз")
         else:
             await message.answer(f"Вы выбрали человека {message.text}")
-            print(message.payload)
             Admin_panel_db.save_value(message.payload, state.state)
         return isUniq
     else:
@@ -160,7 +159,6 @@ async def choose_item(message: Message, scan_on_people=None):
     state = await bp.state_dispenser.get(message.peer_id)
 
     if state.state != 'DEEP_SCAN_COMMENTS:1':
-        print('Not State')
         page_number = 0
         Admin_panel_db.clear_buffer()
         await bp.state_dispenser.set(message.peer_id, DEEP_SCAN_COMMENTS.CHOOSE_GROUP)
@@ -337,7 +335,7 @@ async def comments_loading(message: Message):
                 CommentsDownloader = Comments_finder_on_people()
                 searched_items = Admin_panel_db.fetch_values(script_part='DEEP_SCAN_COMMENTS:3')
 
-            print(searched_items, group_ids)
+
             thread = threading.Thread(target=CommentsDownloader.go_search,
                                               args=(message.peer_id, [i for i in searched_items],
                                                     [f'-{i}' for i in group_ids]))

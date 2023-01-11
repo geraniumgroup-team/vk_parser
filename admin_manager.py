@@ -1,6 +1,6 @@
 from typing import Union, Optional
 from vkbottle import KeyboardButtonColor, Text, Bot, BotBlueprint, Keyboard
-from vkbottle.bot import Blueprint, Message
+from vkbottle.bot import Message
 from models import session, Group_ids, Words, Admin_panel_db
 from start_keyboard import start_keyboard
 
@@ -141,9 +141,7 @@ class Adding_admin_data():
 
                 group = Group(self.bot, int(message.text))
 
-                print(type(group.group_id), [existing_group for existing_group in groups])
                 if group.group_id in [existing_group for existing_group in groups]:
-                    print(group.group_id, [existing_group for existing_group in groups])
                     await message.answer(f'Группа {await group.group_name} уже была добавлена ранее')
 
                 elif int(message.text) not in [group for group in groups] and len(message.text) < 20:
