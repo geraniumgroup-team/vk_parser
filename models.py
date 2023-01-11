@@ -38,6 +38,9 @@ class Page_number(Base):
     __tablename__ = 'Page_number'
     page_number = Column(Integer, primary_key=True)
 
+# class Admin(Base):
+#     __tablename__ = 'Admin'
+#     id = Column(Integer, primary_key=True)
 
 class Cache(Base):
     __tablename__ = 'Cache'
@@ -62,6 +65,10 @@ class Parser_DB():
                                     Cache.post_id == post_id, Cache.item_id == item_id).first()
         if result:
             return (result.target_id, result.post_id, result.item_id)
+
+    # def set_admin_id(self, id):
+    #     session.add(Admin(id=id))
+    #     session.commit()
 
 class Admin_panel_db():
     def clear_buffer(self):

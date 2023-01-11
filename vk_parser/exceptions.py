@@ -1,7 +1,6 @@
-from .captcha_handler import captcha_handler
 from config import log_parser
 from vk_api import exceptions
-from vk_parser import reauth, vk_session_group
+from vk_parser import *
 import vk_api
 import time
 import random

@@ -8,15 +8,15 @@ from vkbottle import Keyboard, KeyboardButtonColor, Text
 from start_keyboard import start_keyboard
 from admin_manager import Adding_admin_data, User, Group, Word
 
-logger.level("ERROR")
+logger.remove()
 colored_tales = public_token
 logging = log_parser()
 bot = Bot(token=colored_tales)
 Admin_panel_db = Admin_panel_db()
 Adding_admin_data = Adding_admin_data(bot)
 
-for bp in load_blueprints_from_package("blueprints"):
-    bp.load(bot)
+print(10)
+
 
 @bot.on.message(lev="Начать")
 async def start_work(message: Message):
@@ -25,6 +25,11 @@ async def start_work(message: Message):
     await message.answer('Внимание! Данным ботом можно пользоваться только с одной страницы единовременно.'
                          'При использовании с двух страциц и более бот будет отвечать только одной, сбоить и вылетать', keyboard=keyboard)
     await bot.state_dispenser.set(message.peer_id, START_PANEL_STATES.START_STATE)
+    from vk_parser import set_admin_id
+    set_admin_id(123)
+    for bp in load_blueprints_from_package("blueprints"):
+        bp.load(bot)
+
 
 @bot.on.message(state=START_PANEL_STATES.START_STATE)
 async def start_handler(message: Message):

@@ -55,7 +55,10 @@ class Daemon_Comments_finder():
                         #Проверка. Если пост старше limit(неделя по умолчанию), то он не мониторится. Таким образом задаётся
                         #глубина мониторинга: чтобы мониторились только актуальные комменты, а не все комменты группы, коих
                         #могут быть сотни тысяч.
-                        if post_datetime.astimezone(moskow) >= datetime.datetime.now().astimezone(moskow) - datetime.timedelta(
+                        print(post_datetime.astimezone(moskow), post_datetime.astimezone(moskow)
+                              <= datetime.datetime.now().astimezone(moskow) - datetime.timedelta(
+                                days=limit))
+                        if post_datetime.astimezone(moskow) <= datetime.datetime.now().astimezone(moskow) - datetime.timedelta(
                                 days=limit):
                             if 'id' in post and 'owner_id' in post:
                                 yield post['id'], post['owner_id'], post['text']

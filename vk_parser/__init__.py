@@ -12,7 +12,6 @@ def show_parsing_state():
 def stop_parsing_thread():
     global stop_parsing
     stop_parsing = True
-    print('stopped')
 
 def allow_parsing_thread():
     global stop_parsing
