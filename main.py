@@ -64,40 +64,7 @@ async def reg_handler(message: Message):
 @bot.on.message(state=START_PANEL_STATES.INSERT_USER)
 async def name_handler(message: Message):
     await Adding_admin_data.set_conditions(message, User(message.text))
-    # users = Admin_panel_db.fetch_all_users_ids()
-    #
-    # if message.text == 'Завершить':
-    #     await bp.state_dispenser.delete(message.peer_id)
-    #     await start_handler(message)
-    #
-    # elif message.text == 'Какие пользователи есть в базе?':
-    #
-    #     if users:
-    #         text = ''
-    #         for count, user_id in enumerate(users):
-    #             username = await bp.api.users.get(user_id)
-    #             text += f'**{count+1}.{username[0].first_name} {username[0].last_name} Id:{user_id}** \n'
-    #         await message.answer(text)
-    #
-    #     else:
-    #         await message.answer('В базе нет пользователей')
-    #
-    # else:
-    #     if message.text.isdigit():
-    #         username = await bp.api.users.get([message.text])
-    #
-    #
-    #         if username and username[0].first_name != 'DELETED' and len(message.text) <= 15:
-    #             if int(message.text) in users:
-    #                 return 'Этот пользователь уже существует в приложении'
-    #             else:
-    #                 Admin_panel_db.add_user_id(message.text)
-    #                 await message.answer(
-    #                     f'Добавлен пользователь {username[0].first_name} {username[0].last_name}')
-    #         else:
-    #             return 'Пользователь не существует или удалён'
-    #     else:
-    #         return 'В id есть что-то, кроме цифр'
+
 
 bot.run_forever()
 
