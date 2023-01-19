@@ -1,8 +1,10 @@
 from vk_parser.auth_vk import *
 from .exceptions import exception_handler
+import os
 stop_parsing = False
 
-vk = auth()
+admin_id = int(os.environ["admin_id"])
+vk = auth(admin_id)
 vk_session_group = vk_session_group
 
 def show_parsing_state():

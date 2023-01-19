@@ -9,16 +9,10 @@ import random
 
 attemp = 0
 vk_session_group = vk_api.VkApi(token=public_token)
-admin_id = None
-print(admin_id)
-def set_admin_id(peer_id: int):
-    global admin_id
-    admin_id = peer_id
-print('12345')
-def auth():
 
-    # try:
-        print(admin_id)
+def auth(peer_id: int):
+
+    try:
         login = credentials[0]['login']
         password = credentials[0]['password']
 
@@ -26,10 +20,10 @@ def auth():
         vk_session.auth()
         vk = vk_session.get_api()
         return vk
-    # except Exception as err:
-    #     time.sleep(5)
-    #     from .exceptions import exception_handler
-    #     exception_handler(err=err, except_location=sys._getframe().f_code.co_name, vk=None, peer_id=284359812)
+    except Exception as err:
+        time.sleep(5)
+        from .exceptions import exception_handler
+        exception_handler(err=err, except_location=sys._getframe().f_code.co_name, vk=None, peer_id=peer_id)
 
 def reauth(peer_id: int):
     global attemp
@@ -56,7 +50,7 @@ def reauth(peer_id: int):
         from .exceptions import exception_handler
         exception_handler(err=err, except_location=sys._getframe().f_code.co_name, vk=None, peer_id=peer_id)
 
-def captcha_handler(captcha):
+def captcha_handler(captcha, peer_id: int):
     captcha_url = captcha.get_url()
 
     # Сохраняем изображение капчи
@@ -80,7 +74,7 @@ def captcha_handler(captcha):
     time.sleep(1)
 
     # Отправляем сообщение
-    vk_session_group.method('messages.send', {'user_id': 661706483, 'message': 'Введите и отправьте текст с капчи боту,'
+    vk_session_group.method('messages.send', {'user_id': peer_id, 'message': 'Введите и отправьте текст с капчи боту,'
                                                                               'чтобы он заработал',
                                               'attachment': attachment, 'random_id': random.randint(0, 10000)})
 

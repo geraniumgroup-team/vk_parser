@@ -7,6 +7,7 @@ from STATES import START_PANEL_STATES
 from vkbottle import Keyboard, KeyboardButtonColor, Text
 from start_keyboard import start_keyboard
 from admin_manager import Adding_admin_data, User, Group, Word
+import os
 
 logger.remove()
 colored_tales = public_token
@@ -15,7 +16,6 @@ bot = Bot(token=colored_tales)
 Admin_panel_db = Admin_panel_db()
 Adding_admin_data = Adding_admin_data(bot)
 
-print(10)
 
 
 @bot.on.message(lev="Начать")
@@ -25,8 +25,8 @@ async def start_work(message: Message):
     await message.answer('Внимание! Данным ботом можно пользоваться только с одной страницы единовременно.'
                          'При использовании с двух страциц и более бот будет отвечать только одной, сбоить и вылетать', keyboard=keyboard)
     await bot.state_dispenser.set(message.peer_id, START_PANEL_STATES.START_STATE)
-    from vk_parser import set_admin_id
-    set_admin_id(123)
+    os.environ["admin_id"] = str(message.peer_id)
+
     for bp in load_blueprints_from_package("blueprints"):
         bp.load(bot)
 

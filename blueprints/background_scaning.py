@@ -253,7 +253,7 @@ async def wait_for_start(message: Message):
     serched_words = Admin_panel_db.fetch_values(script_part='BACKGROUND_COMMENTS:1')
     Admin_panel_db.clear_buffer()
 
-    thread = threading.Thread(target=Daemon_Comments_finder.make_replies, args=([i for i in target_ids],20000,
+    thread = threading.Thread(target=Daemon_Comments_finder.make_replies, args=([i for i in target_ids],30,
                                                                                         [i for i in serched_words], message.peer_id))
     if message.text == 'Завершить досрочно':
         await message.answer('Сканирование отменено')
